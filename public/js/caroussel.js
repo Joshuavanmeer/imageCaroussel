@@ -78,7 +78,7 @@ var caroussel = (function(w,d){
                 moveSlide(state.activeSlide - 1);
             } else if (target.id.indexOf('UI-pin-') !== -1) {
                 var id = target.id.replace('UI-pin-', '');
-                moveSlide(Number(id));
+                moveSlide('', Number(id));
             }
         }
 
@@ -102,12 +102,13 @@ var caroussel = (function(w,d){
                     state.touchEndX = touchX;
 
                     if (Math.abs(state.touchStartX - state.touchEndX) > 100 &&
-                        state.touchStartX - state.touchEndX ) {
-                            moveSlide(state.activeSlide + 1);
-                    } else if (Math.abs(state.touchStartX - state.touchEndX) > 100 &&
-                        state.touchStartX - state.touchEndX ) {
-                        moveSlide(state.activeSlide + 1);
-                    };
+                        state.touchStartX - state.touchEndX > 0) {
+                            moveSlide('right', state.activeSlide + 1);
+                    }
+                    else if (Math.abs(state.touchStartX - state.touchEndX) > 100 &&
+                        state.touchStartX - state.touchEndX < 0) {
+                            moveSlide('left', state.activeSlide - 1);
+                    }
                     break;
 
             }
@@ -117,14 +118,19 @@ var caroussel = (function(w,d){
 
 
         function moveSlide(direction, slots) {
-            if( direction === 'right' && state.activeSlide !== (state.totalSlides - 1))
-            slideContainer.style = '-' + (slots * state.width) + 'px';
-
+            if ((direction === 'right' && state.activeSlide !== (state.totalSlides - 1)) ||
+                (direction === 'left' && state.activeSlide !== 0)) {
+                slideContainer.style = '-' + (slots * state.width) + 'px';
+            }
+            else if (!direction) {
+                slideContainer.style = '-' + (slots * state.width) + 'px';
+            }
             //update active state on sliderCollection and apply change to state
             sliderCollection.updateActive(slots);
             state.activeSlide = sliderCollection.getActive();
             initChange();
         }
+
 
 
         //change state
