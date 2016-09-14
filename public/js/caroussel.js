@@ -91,6 +91,7 @@ var caroussel = (function(w,d){
         }
 
 
+        //convert touch event to swipe and move the slide
         function handleMove(ev) {
             var touchX = ev.changedTouches[0].clientX;
 
@@ -120,13 +121,11 @@ var caroussel = (function(w,d){
 
         function moveSlide(slots) {
             slideContainer.style.left = '-' + (slots * state.width) + 'px';
-
             //update active state on sliderCollection and apply change to state
             sliderCollection.updateActive(slots);
             state.activeSlide = sliderCollection.getActive();
             initChange();
         }
-
 
 
         //change state
