@@ -117,8 +117,6 @@ var caroussel = (function(w,d){
         }
 
 
-
-
         function moveSlide(slots) {
             slideContainer.style.left = '-' + (slots * state.width) + 'px';
             //update active state on sliderCollection and apply change to state
