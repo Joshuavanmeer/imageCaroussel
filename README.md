@@ -1,5 +1,5 @@
 # imageCaroussel
-Image slider/ caroussel / slideshow
+
 
 
 <p>
