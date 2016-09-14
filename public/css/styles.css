@@ -1,0 +1,78 @@
+*, *:after, *:before {
+    box-sizing: border-box;
+}
+
+
+
+body {
+    margin: 0;
+    padding: 0;
+    background: grey;
+}
+
+#caroussel {
+    background: white;
+    min-height: 300px;
+    border: 1px solid black;
+}
+
+#caroussel-container {
+    text-align: center;
+    overflow: hidden;
+    position: relative;
+}
+
+.slide {
+    background: deepskyblue;
+    height: 100%;
+    float:left;
+    text-align: center;
+}
+
+.slide img {
+
+}
+
+#slide-container {
+    left: 0;
+    transition: all 1s;
+    height: 100%;
+    position: absolute;
+}
+
+#caroussel-controls {
+    display: flex;
+    flex-flow: row nowrap;
+    justify-content: space-between;
+    height: 100vh;
+}
+
+#pin-control {
+    background: purple;
+    display: flex;
+    flex-flow: row nowrap;
+    justify-content: center;
+    align-items: center;
+    align-self: flex-end;
+    margin-bottom: 20px;
+    z-index: 10;
+}
+
+.pin {
+    background: yellow;
+    width: 30px;
+    height: 30px;
+    border: 3px solid green;
+    border-radius: 15px;
+    margin: 0 5px;
+    transition: all .4s;
+}
+
+#arrow-left, #arrow-right {
+    width: 90px;
+    background: purple;
+    height: 70px;
+    align-self: center;
+    z-index: 10;
+    transition: all .5s;
+}
