@@ -31,6 +31,9 @@ body {
     text-align: center;
 }
 
+.slide img {
+    width: 100%;
+}
 
 .slide h3 {
     color: white;
