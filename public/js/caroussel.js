@@ -103,7 +103,10 @@ var caroussel = (function(w,d){
 
                     if (Math.abs(state.touchStartX - state.touchEndX) > 100 &&
                         state.touchStartX - state.touchEndX ) {
-                            moveSlide(state.activeSlide + 1)
+                            moveSlide(state.activeSlide + 1);
+                    } else if (Math.abs(state.touchStartX - state.touchEndX) > 100 &&
+                        state.touchStartX - state.touchEndX ) {
+                        moveSlide(state.activeSlide + 1);
                     };
                     break;
 
@@ -113,8 +116,9 @@ var caroussel = (function(w,d){
 
 
 
-        function moveSlide(slots) {
-            slideContainer.style.left = '-' + (slots * state.width) + 'px';
+        function moveSlide(direction, slots) {
+            if( direction === 'right' && state.activeSlide !== (state.totalSlides - 1))
+            slideContainer.style = '-' + (slots * state.width) + 'px';
 
             //update active state on sliderCollection and apply change to state
             sliderCollection.updateActive(slots);
