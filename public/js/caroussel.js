@@ -201,7 +201,7 @@ var caroussel = (function(w,d){
         //new slide and corresponding UI pin.
         function addSlide(slideData) {
             buildSlideData(slideData, sliderCollection.slides);
-            buildSlide(slideData, sliderCollection.slides, state.totalSlides);
+            buildSlide(sliderCollection.slides);
             buildPinsUI(state.totalSlides);
             initChange();
         }
@@ -224,13 +224,17 @@ var caroussel = (function(w,d){
 
         //construct HTML for each slide after
         //being added through API
-        function buildSlide(slideData, collection){
-            var slideElem, slideImg, domFrag;
+        function buildSlide(collection){
+            var slideElem, slideImg, slideDesc, descTextNode, domFrag;
             domFrag = d.createDocumentFragment();
 
             collection.forEach(function(elem) {
                 slideElem = d.createElement('div');
                 slideImg = d.createElement('img');
+                slideDesc = d.createElement('h3');
+                descTextNode = d.createTextNode(elem.desc);
+                slideDesc.appendChild(descTextNode);
+                slideElem.appendChild(slideDesc);
 
                 slideElem.className = 'slide';
                 slideImg.setAttribute('src', elem.url);
