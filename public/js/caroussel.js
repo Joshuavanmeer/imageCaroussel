@@ -20,7 +20,9 @@ var caroussel = (function(w,d){
             speed: prefs.speed,
             width: getWidth(),
             activeSlide: 0,
-            totalSlides: 0
+            totalSlides: 0,
+            touchStartX: 0,
+            touchEndX: 0
         },
 
         //collection of slides with data
@@ -50,6 +52,7 @@ var caroussel = (function(w,d){
         //build caroussel UI based on preferences stored in configs
         function bootCaroussel() {
             assignEventListeners(carousselContainer, 'addEventListener', ['click', 'touch'], handleEvent);
+            assignEventListeners(carousselContainer, 'addEventListener', ['touchstart', 'touchend'], handleMove);
             assignEventListeners(w, 'addEventListener', ['resize'], handleResize);
             slideContainer.style.transition = 'all ' + state.speed + 's';
         }
@@ -86,6 +89,28 @@ var caroussel = (function(w,d){
             state.width = getWidth();
             renderSlides(state.totalSlides);
         }
+
+
+        function handleMove(ev) {
+            var touchX = ev.changedTouches[0].clientX;
+
+            switch (ev.type) {
+                case 'touchstart':
+                    state.touchStartX = touchX;
+                    break;
+                case 'touchend':
+                    state.touchEndX = touchX;
+
+                    if (Math.abs(state.touchStartX - state.touchEndX) > 100 &&
+                        state.touchStartX - state.touchEndX ) {
+                            moveSlide(state.activeSlide + 1)
+                    };
+                    break;
+
+            }
+        }
+
+
 
 
         function moveSlide(slots) {
