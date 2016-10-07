@@ -46,4 +46,5 @@ sweetSlider.addSlide([
 <li>remove presentation logic, and let it be added through API config</li>
 <li>Add touch detection</li>
 <li>Add an on window resize detection to update the view accordingly</li>
+<li>Evaluate and update animation techniques, transform over position absolute</li>
 </ul>
